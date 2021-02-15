@@ -1,6 +1,11 @@
 // GLOBAL VARIABLES
 img = null
 data = []
+// scale = 1
+
+// function getScale(){
+
+// }
 
 function getPixel(x, y){
 	if (x > img.naturalWidth || x < 0 || y < 0 || y > img.naturalHeight){return}
@@ -13,6 +18,12 @@ function getPixel(x, y){
 	hoverBox = document.querySelector('#hoverBox');
 	hoverBox.style.backgroundColor = `rgb(${r},${g},${b})`
 	hoverBox.innerText = `rgb(${r},${g},${b})`
+	if (r < 150 && b < 150 && g < 150){
+		hoverBox.style.color = "white"
+	}
+	else{
+		hoverBox.style.color = "black"
+	}
 }
 
 function clickPixel(){
@@ -20,6 +31,7 @@ function clickPixel(){
 	box = document.querySelector('#mainBox');
 	box.style.backgroundColor = hoverBox.style.backgroundColor
 	box.innerText = hoverBox.innerText
+	box.style.color = hoverBox.style.color
 }
 
 function loadImg(img) {
@@ -38,6 +50,15 @@ function addImage(file) {
 	img.onclick = clickPixel
 	img.onload = function() {loadImg(img)};
   	document.getElementById('image').appendChild(img);
+	
+	// prepping page
+	document.getElementById('download-button').style.display = "block"
+	mainBox = document.getElementById("mainBox")
+	hoverBox = document.getElementById("hoverBox")
+	mainBox.style.backgroundColor = hoverBox.style.backgroundColor = "black"
+	mainBox.innerText = hoverBox.innerText = "rgb(0,0,0)"
+	mainBox.style.color = hoverBox.style.color = "white"
+
 }
 
 function handleImages(files) {
