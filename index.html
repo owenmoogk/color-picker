@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Color Picker</title>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<h1>Color Picker</h1>
+			<p>Client-side JavaScript application to get the pixel data of an image. Upload below.
+			<div id="target">
+				Click to upload image
+				<input type="file" id="upload"/>
+			</div>
+		</div>
+		<div id="main">
+			<div id="image"></div>
+			<div id="boxes">
+				<div class="colorBox" id="hoverBox"></div>
+				<div class="colorBox" id="mainBox"></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/githubLink.js"></script>
+	<script>githubLink()</script>
+	<script src="js/main.js"></script>
+	<script src="js/mouse.js"></script>
+</html>
