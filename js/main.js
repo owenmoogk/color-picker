@@ -11,6 +11,26 @@ function getScale(){
 	scale = defaultWidth / myWidth
 }
 
+function getAverageColor(){
+	r = 0
+	g = 0
+	b = 0
+	myLen = data.length
+	for (i = 0; i < myLen; i += 4){
+		r += data[i]
+		g += data[i+1]
+		b += data[i+2]
+	}
+	pixels = data.length / 4
+	r = Math.floor(r / pixels)
+	g = Math.floor(g / pixels)
+	b = Math.floor(b / pixels)
+	finalColor = `rgb(${r},${g},${b})`
+	averageBox = document.getElementById('averageBox')
+	averageBox.style.backgroundColor = finalColor
+	averageBox.innerText = finalColor
+}
+
 // passing in values relative to top corner of image
 function getPixel(x, y){
 	x = Math.floor(x * scale)
@@ -53,18 +73,23 @@ function addImage(file) {
 		ctx.drawImage(img, 0, 0);
 		var imageData = ctx.getImageData(0, 0, width, height);
 		data = imageData.data;
+		getAverageColor()
 		getScale()
 	};
 	
 	// updating page
 	document.getElementById('image').innerHTML = '';
 	document.getElementById('image').appendChild(img);
-	document.getElementById('download-button').style.display = "block"
 	mainBox = document.getElementById("mainBox")
 	hoverBox = document.getElementById("hoverBox")
 	mainBox.style.backgroundColor = hoverBox.style.backgroundColor = "black"
 	mainBox.innerText = hoverBox.innerText = "rgb(0,0,0)"
 	mainBox.style.color = hoverBox.style.color = "white"
+	
+	x = document.getElementsByClassName("picture-only")
+	for (i = 0; i < x.length; i++){
+		x[i].style.display = "block"
+	}
 
 }
 

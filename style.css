@@ -33,15 +33,11 @@ h1 {
 }
 
 .colorBox{
-	height: 80px;
-	width: 160px;
+	height: 100px;
+	width: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-#download-button{
-	display: none;
 }
 
 #upload{
@@ -51,4 +47,7 @@ h1 {
 #image img{
 	max-width: 100%;
 	max-height: 700px;
+}
+.picture-only{
+	display: none;
 }
