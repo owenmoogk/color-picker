@@ -9,18 +9,17 @@
 	<body>
 		<div id="header">
 			<h1>Color Picker</h1>
-			<p>Client-side JavaScript application to get the pixel data of an image. Upload below.
-			<div id="target">
-				Click to upload image
-				<input type="file" id="upload"/>
-			</div>
+			<p>Client-side JavaScript application to get the pixel data of an image. <button onclick="upload.click()">Upload</button>
+			<input type="file" id="upload"/>
 		</div>
 		<div id="main">
 			<div id="image"></div>
 			<div id="boxes">
 				<div class="colorBox" id="hoverBox"></div>
 				<div class="colorBox" id="mainBox"></div>
+				<br>
 				<button onclick="download_csv(data)" id="download-button">Download Image Data</button>
+				<br>
 			</div>
 		</div>
 	</body>

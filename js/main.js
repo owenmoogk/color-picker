@@ -9,15 +9,12 @@ function getScale(){
 	defaultWidth = img.naturalWidth
 	myWidth = htmlImage.offsetWidth
 	scale = defaultWidth / myWidth
-	console.log(scale)
 }
 
 // passing in values relative to top corner of image
 function getPixel(x, y){
-	console.log(x, y, scale)
 	x = Math.floor(x * scale)
 	y = Math.floor(y * scale)
-	console.log(x, y)
 	if (x > img.naturalWidth || x < 0 || y < 0 || y > img.naturalHeight){return}
 	index = img.naturalWidth * (y-1) + x
 	index = index * 4 // for the 4 values associated with each pixel
@@ -73,18 +70,10 @@ function addImage(file) {
 
 // UPLOADING STUFF
 
-document.ondrop = function(event) {
-	event.preventDefault();
-	handleImages(event.dataTransfer.files);
-};
-
 (function() {
 	var upload = document.getElementById('upload');
 	var target = document.getElementById('target');
 	upload.onchange = function() {
 		addImage(this.files[0])
-	};
-	target.onclick = function() {
-		upload.click();
 	};
 })();
