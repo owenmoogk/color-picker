@@ -1,13 +1,23 @@
 // GLOBAL VARIABLES
 img = null
 data = []
-// scale = 1
+scale = 1
+window.onresize = getScale;
 
-// function getScale(){
+function getScale(){
+	htmlImage = document.getElementsByTagName("img")[0]
+	defaultWidth = img.naturalWidth
+	myWidth = htmlImage.offsetWidth
+	scale = defaultWidth / myWidth
+	console.log(scale)
+}
 
-// }
-
+// passing in values relative to top corner of image
 function getPixel(x, y){
+	console.log(x, y, scale)
+	x = Math.floor(x * scale)
+	y = Math.floor(y * scale)
+	console.log(x, y)
 	if (x > img.naturalWidth || x < 0 || y < 0 || y > img.naturalHeight){return}
 	index = img.naturalWidth * (y-1) + x
 	index = index * 4 // for the 4 values associated with each pixel
@@ -34,24 +44,24 @@ function clickPixel(){
 	box.style.color = hoverBox.style.color
 }
 
-function loadImg(img) {
-	var canvas = document.createElement('canvas');
-	var ctx = canvas.getContext('2d');
-	var width = canvas.width = img.naturalWidth;
-	var height = canvas.height = img.naturalHeight;
-	ctx.drawImage(img, 0, 0);
-	var imageData = ctx.getImageData(0, 0, width, height);
-	data = imageData.data;
-}
-
 function addImage(file) {
-	var img = document.createElement('img');
+	img = document.createElement('img');
 	img.src = URL.createObjectURL(file);
 	img.onclick = clickPixel
-	img.onload = function() {loadImg(img)};
-  	document.getElementById('image').appendChild(img);
+	img.onload = function() {
+		var canvas = document.createElement('canvas');
+		var ctx = canvas.getContext('2d');
+		var width = canvas.width = img.naturalWidth;
+		var height = canvas.height = img.naturalHeight;
+		ctx.drawImage(img, 0, 0);
+		var imageData = ctx.getImageData(0, 0, width, height);
+		data = imageData.data;
+		getScale()
+	};
 	
-	// prepping page
+	// updating page
+	document.getElementById('image').innerHTML = '';
+	document.getElementById('image').appendChild(img);
 	document.getElementById('download-button').style.display = "block"
 	mainBox = document.getElementById("mainBox")
 	hoverBox = document.getElementById("hoverBox")
@@ -59,11 +69,6 @@ function addImage(file) {
 	mainBox.innerText = hoverBox.innerText = "rgb(0,0,0)"
 	mainBox.style.color = hoverBox.style.color = "white"
 
-}
-
-function handleImages(files) {
-	document.getElementById('image').innerHTML = '';
-	addImage(files[0]);
 }
 
 // UPLOADING STUFF
@@ -77,7 +82,7 @@ document.ondrop = function(event) {
 	var upload = document.getElementById('upload');
 	var target = document.getElementById('target');
 	upload.onchange = function() {
-		handleImages(this.files);
+		addImage(this.files[0])
 	};
 	target.onclick = function() {
 		upload.click();
