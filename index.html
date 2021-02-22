@@ -13,7 +13,10 @@
 			<input type="file" id="upload"/>
 		</div>
 		<div id="main">
-			<div id="image"></div>
+			<div id="images">
+				<div id="image"></div>
+				<canvas></canvas>
+			</div>
 			<div id="boxes">
 				<div class="colorBox" id="hoverBox"></div>
 				<div class="colorBox" id="mainBox"></div>
@@ -22,12 +25,15 @@
 				<br>
 				<p class="picture-only">Average color:</p>
 				<div class="colorBox" id="averageBox"></div>
+				<br>
+				<button class="picture-only" onclick="toGreyscale(data)">Greyscale</button>
 			</div>
 		</div>
 	</body>
 	<script src="js/githubLink.js"></script>
 	<script>githubLink()</script>
+	<script src="js/greyscale.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/mouse.js"></script>
-	<script src="/js/csv.js"></script>
+	<script src="js/csv.js"></script>
 </html>

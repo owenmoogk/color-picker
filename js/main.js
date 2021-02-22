@@ -78,6 +78,8 @@ function addImage(file) {
 	};
 	
 	// updating page
+	myCanvas = document.getElementsByTagName("canvas")[0]
+	myCanvas.style.display = "none"
 	document.getElementById('image').innerHTML = '';
 	document.getElementById('image').appendChild(img);
 	mainBox = document.getElementById("mainBox")
@@ -85,7 +87,8 @@ function addImage(file) {
 	mainBox.style.backgroundColor = hoverBox.style.backgroundColor = "black"
 	mainBox.innerText = hoverBox.innerText = "rgb(0,0,0)"
 	mainBox.style.color = hoverBox.style.color = "white"
-	
+	myImg = document.getElementsByTagName("img")[0]
+    myImg.style.display = "block"
 	x = document.getElementsByClassName("picture-only")
 	for (i = 0; i < x.length; i++){
 		x[i].style.display = "block"
@@ -97,7 +100,6 @@ function addImage(file) {
 
 (function() {
 	var upload = document.getElementById('upload');
-	var target = document.getElementById('target');
 	upload.onchange = function() {
 		addImage(this.files[0])
 	};
